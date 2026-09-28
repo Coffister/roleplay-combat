@@ -1,0 +1,17 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "side-tab",
+        "value": "*",
+        "files": [
+          "src/components/fight/FightCard.module.css"
+        ],
+        "createdAt": "2026-09-28T19:47:08.644Z",
+        "reason": "Claude: 3px top (not side) gold rule marks title fights only; carries meaning, matches champion gold in rankings"
+      }
+    ]
+  }
+}

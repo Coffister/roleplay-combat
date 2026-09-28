@@ -120,26 +120,9 @@
   transition: border-color var(--dur) var(--ease-out);
 }
 
-.card::before {
-  content: '';
-  position: absolute;
-  inset: 0 0 auto;
-  height: 3px;
-  background: var(--color-primary);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform var(--dur) var(--ease-out);
-  z-index: 1;
-}
-
 .card:hover,
 .card:focus-within {
   border-color: var(--color-border-strong);
-}
-
-.card:hover::before,
-.card:focus-within::before {
-  transform: scaleX(1);
 }
 
 .cardPortrait {

@@ -20,15 +20,3 @@
     transform: translateY(-12%) scaleX(0.7);
   }
 }
-
-.grid {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background-image:
-    linear-gradient(to right, color-mix(in oklab, var(--color-text) 6%, transparent) 1px, transparent 1px),
-    linear-gradient(to bottom, color-mix(in oklab, var(--color-text) 6%, transparent) 1px, transparent 1px);
-  background-size: 64px 64px;
-  background-position: center top;
-  mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, black, transparent 75%);
-}

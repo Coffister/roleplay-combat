@@ -7,11 +7,6 @@ export function Spotlight({ className }: { className?: string }) {
   return <div aria-hidden className={[s.spotlight, className].filter(Boolean).join(' ')} />
 }
 
-/** Faint technical grid fading out from the centre. Adapted from Aceternity "Grid Background". */
-export function GridBackdrop({ className }: { className?: string }) {
-  return <div aria-hidden className={[s.grid, className].filter(Boolean).join(' ')} />
-}
-
 /** Fade-up once when scrolled into view. MotionConfig reducedMotion="user" disables the movement. */
 export function Reveal({ children, delay = 0, className }: { children: ReactNode; delay?: number; className?: string }) {
   return (

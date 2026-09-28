@@ -15,7 +15,7 @@ export function ResultCard({ fight, showEvent = true }: { fight: FightView; show
   const division = getDivision(fight.divisionId)
 
   return (
-    <article className={draw ? `${s.card} ${s.draw}` : s.card}>
+    <article className={s.card}>
       <div className={s.who}>
         <Avatar fighter={winner.fighter} size="md" />
         <p className={s.names}>

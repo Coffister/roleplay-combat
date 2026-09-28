@@ -7,7 +7,7 @@ import { getDivision } from '../../lib/queries'
 import { cardTypeLabels } from '../../config/site'
 import { formatDateLong, formatTime, formatWeekday } from '../../lib/format'
 import { FighterAvatar, FighterRecord } from '../fighter'
-import { GridBackdrop, Spotlight } from '../effects'
+import { Spotlight } from '../effects'
 import s from './EventHero.module.css'
 
 type EventHeroProps = {
@@ -27,7 +27,6 @@ export function EventHero({ event, mainEvent, eyebrow, actions, children }: Even
   const division = mainEvent && getDivision(mainEvent.divisionId)
   return (
     <section className={s.hero} aria-labelledby="event-hero-title">
-      <GridBackdrop />
       <Spotlight />
 
       {mainEvent && (

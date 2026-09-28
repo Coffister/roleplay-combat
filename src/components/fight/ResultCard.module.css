@@ -1,9 +1,8 @@
 .card {
   display: grid;
   gap: var(--space-3);
-  padding: var(--space-4) var(--space-4) var(--space-4) var(--space-5);
+  padding: var(--space-4) var(--space-5);
   background: var(--color-surface);
-  border-left: 3px solid var(--color-win);
   box-shadow: inset 0 0 0 1px var(--color-border);
 }
 
@@ -109,8 +108,4 @@
     text-align: right;
     align-items: flex-end;
   }
-}
-
-.draw {
-  border-left-color: var(--color-text-muted);
 }
