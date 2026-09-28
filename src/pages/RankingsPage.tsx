@@ -15,12 +15,12 @@ export default function RankingsPage() {
 
   return (
     <>
-      <Seo title="Rankings" description="Official CMRP Combat rankings for every division, updated after each event." />
-      <PageHeader eyebrow="Official" title="Rankings" intro="Voted by the matchmaking panel after every event.">
+      <Seo title="Žebříčky" description="Oficiální žebříčky CMRP Combat pro všechny kategorie, aktualizované po každé akci." />
+      <PageHeader eyebrow="Oficiální" title="Žebříčky" intro="Sestavuje matchmakingová komise po každé akci.">
         {rankings.length > 1 && (
           <Tabs
             size="lg"
-            label="Division"
+            label="Kategorie"
             controls={panelId}
             value={active?.divisionId ?? ''}
             onChange={(id) => setParams({ division: id }, { replace: true, preventScrollReset: true })}
@@ -29,8 +29,8 @@ export default function RankingsPage() {
         )}
       </PageHeader>
       <Section>
-        <div id={panelId} role="tabpanel" aria-label={active ? `${active.divisionName} rankings` : undefined} className={s.narrow}>
-          {active ? <RankingList ranking={active} /> : <p className={s.empty}>Rankings will be published after the first event.</p>}
+        <div id={panelId} role="tabpanel" aria-label={active ? `Žebříček – ${active.divisionName}` : undefined} className={s.narrow}>
+          {active ? <RankingList ranking={active} /> : <p className={s.empty}>Žebříčky zveřejníme po první akci.</p>}
         </div>
       </Section>
     </>

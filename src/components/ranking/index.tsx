@@ -8,12 +8,12 @@ import { Avatar, FighterAvatar, FighterRecord } from '../fighter'
 import s from './ranking.module.css'
 
 function Movement({ position, previous }: { position: number; previous?: number }) {
-  if (previous === undefined) return <span className={`${s.move} ${s.new}`}>New</span>
+  if (previous === undefined) return <span className={`${s.move} ${s.new}`}>Nový</span>
   const diff = previous - position
-  if (diff === 0) return <span className={s.move} aria-label="No change"><Minus size={14} aria-hidden /></span>
+  if (diff === 0) return <span className={s.move} aria-label="Beze změny"><Minus size={14} aria-hidden /></span>
   const up = diff > 0
   return (
-    <span className={`${s.move} ${up ? s.up : s.down}`} aria-label={`${up ? 'Up' : 'Down'} ${Math.abs(diff)} (was #${previous})`}>
+    <span className={`${s.move} ${up ? s.up : s.down}`} aria-label={`${up ? 'Posun nahoru' : 'Posun dolů'} o ${Math.abs(diff)} (dříve #${previous})`}>
       {up ? <ArrowUp size={14} aria-hidden /> : <ArrowDown size={14} aria-hidden />}
       <span aria-hidden>{up ? '+' : '−'}{Math.abs(diff)}</span>
     </span>
@@ -23,7 +23,7 @@ function Movement({ position, previous }: { position: number; previous?: number 
 export function RankingRow({ fighter, position, previousPosition }: { fighter: Fighter; position: number; previousPosition?: number }) {
   return (
     <motion.li className={s.row} variants={{ hidden: { opacity: 0, x: -12 }, show: { opacity: 1, x: 0 } }}>
-      <span className={`${s.pos} tabular`} aria-label={`Rank ${position}`}>{pad2(position)}</span>
+      <span className={`${s.pos} tabular`} aria-label={`Pozice ${position}`}>{pad2(position)}</span>
       <Avatar fighter={fighter} size="md" />
       <div className={s.who}>
         <Link to={`/fighters/${fighter.id}`} className={s.name}>
@@ -46,7 +46,7 @@ export function RankingList({ ranking, compact }: { ranking: RankingView; compac
         <div className={s.champion}>
           {!compact && <FighterAvatar fighter={champion} className={s.champPortrait} />}
           <div className={s.champInfo}>
-            <p className={s.champLabel}>{ranking.divisionName} champion</p>
+            <p className={s.champLabel}>Šampion · {ranking.divisionName}</p>
             <Link to={`/fighters/${champion.id}`} className={s.champName}>
               <span>{champion.firstName}</span> {champion.lastName}
             </Link>
@@ -65,7 +65,7 @@ export function RankingList({ ranking, compact }: { ranking: RankingView; compac
           <RankingRow key={e.fighter.id} fighter={e.fighter} position={e.position} previousPosition={e.previousPosition} />
         ))}
       </motion.ol>
-      {!compact && <p className={s.updated}>Updated {formatDateLong(ranking.updatedAt)}</p>}
+      {!compact && <p className={s.updated}>Aktualizováno {formatDateLong(ranking.updatedAt)}</p>}
     </div>
   )
 }

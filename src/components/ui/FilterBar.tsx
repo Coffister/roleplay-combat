@@ -15,12 +15,12 @@ export function FilterBar({ filters, onReset }: { filters: Filter[]; onReset?: (
   const base = useId()
   const active = filters.some((f) => f.value)
   return (
-    <div className={s.filterBar} role="group" aria-label="Filters">
+    <div className={s.filterBar} role="group" aria-label="Filtry">
       {filters.map((f) => (
         <div key={f.id} className={s.filter}>
           <label className="label" htmlFor={base + f.id}>{f.label}</label>
           <select id={base + f.id} className={s.select} value={f.value} onChange={(e) => f.onChange(e.target.value)}>
-            <option value="">All</option>
+            <option value="">Vše</option>
             {f.options.map((o) => (
               <option key={o.value} value={o.value}>{o.label}</option>
             ))}
@@ -29,7 +29,7 @@ export function FilterBar({ filters, onReset }: { filters: Filter[]; onReset?: (
       ))}
       {onReset && active && (
         <button type="button" className={s.reset} onClick={onReset}>
-          <X size={14} aria-hidden /> Clear filters
+          <X size={14} aria-hidden /> Zrušit filtry
         </button>
       )}
     </div>

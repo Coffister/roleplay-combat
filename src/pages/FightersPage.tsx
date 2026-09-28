@@ -4,6 +4,7 @@ import { Search } from 'lucide-react'
 import { AnimatePresence, motion } from 'motion/react'
 import { Seo } from '../lib/seo'
 import { getDivisions, getFighters, getRank } from '../lib/queries'
+import { plural } from '../lib/format'
 import { FighterCard } from '../components/fighter'
 import { PageHeader, Section } from '../components/ui/Layout'
 import { Tabs } from '../components/ui/Tabs'
@@ -32,20 +33,20 @@ export default function FightersPage() {
     .sort((a, b) => (getRank(a.id) ?? 99) - (getRank(b.id) ?? 99) || a.lastName.localeCompare(b.lastName))
 
   const tabs = [
-    { id: 'all', label: 'All', count: all.length },
+    { id: 'all', label: 'Vše', count: all.length },
     ...getDivisions().map((d) => ({ id: d.id, label: d.name, count: all.filter((f) => f.divisionId === d.id).length })),
   ]
 
   return (
     <>
-      <Seo title="Fighters" description="The full CMRP Combat roster: champions, contenders and prospects across every division." />
-      <PageHeader eyebrow="The roster" title="Fighters" intro={`${all.length} fighters across ${getDivisions().length} divisions.`}>
+      <Seo title="Zápasníci" description="Kompletní soupiska CMRP Combat: šampioni, vyzyvatelé a talenty ve všech kategoriích." />
+      <PageHeader eyebrow="Soupiska" title="Zápasníci" intro={`${plural(all.length, 'zápasník', 'zápasníci', 'zápasníků')} · ${plural(getDivisions().length, 'váhová kategorie', 'váhové kategorie', 'váhových kategorií')}`}>
         <div className={s.toolbar}>
-          <Tabs label="Division" controls={panelId} value={division} onChange={(v) => update('division', v, 'all')} items={tabs} />
+          <Tabs label="Kategorie" controls={panelId} value={division} onChange={(v) => update('division', v, 'all')} items={tabs} />
           <label className={s.search}>
             <Search size={16} aria-hidden />
-            <span className="sr-only">Search fighters</span>
-            <input type="search" placeholder="Search by name" value={q} onChange={(e) => update('q', e.target.value, '')} />
+            <span className="sr-only">Hledat zápasníky</span>
+            <input type="search" placeholder="Hledat podle jména" value={q} onChange={(e) => update('q', e.target.value, '')} />
           </label>
         </div>
       </PageHeader>
@@ -63,7 +64,7 @@ export default function FightersPage() {
               </AnimatePresence>
             </motion.ul>
           ) : (
-            <p className={s.empty}>No fighters match “{q}”.</p>
+            <p className={s.empty}>Hledání „{q}“ neodpovídá žádný zápasník.</p>
           )}
         </div>
       </Section>

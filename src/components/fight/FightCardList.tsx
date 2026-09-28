@@ -2,6 +2,7 @@ import { useId, useState } from 'react'
 import { AnimatePresence, motion } from 'motion/react'
 import type { FightView } from '../../lib/queries'
 import { cardGroups, divisions } from '../../config/site'
+import { plural } from '../../lib/format'
 import { Tabs } from '../ui/Tabs'
 import { FightCard } from './FightCard'
 import s from './FightCardList.module.css'
@@ -31,7 +32,7 @@ export function FightCardList({ fights, filterable = true }: Props) {
     .filter((g) => g.fights.length)
 
   if (!fights.length) {
-    return <p className={s.empty}>The card for this event hasn't been announced yet.</p>
+    return <p className={s.empty}>Karta zápasů pro tuto akci zatím nebyla oznámena.</p>
   }
 
   return (
@@ -39,17 +40,17 @@ export function FightCardList({ fights, filterable = true }: Props) {
       {filterable && groups.length > 1 && (
         <div className={s.controls}>
           <Tabs
-            label="Filter fight card"
+            label="Filtr karty zápasů"
             controls={panelId}
             value={group}
             onChange={setGroup}
-            items={[{ id: 'all', label: 'All', count: fights.length }, ...groups.map((g) => ({ id: g.id, label: g.label, count: g.fights.length }))]}
+            items={[{ id: 'all', label: 'Vše', count: fights.length }, ...groups.map((g) => ({ id: g.id, label: g.label, count: g.fights.length }))]}
           />
           {presentDivisions.length > 1 && (
             <label className={s.division}>
-              <span className="sr-only">Weight class</span>
+              <span className="sr-only">Váhová kategorie</span>
               <select value={division} onChange={(e) => setDivision(e.target.value)}>
-                <option value="">All weight classes</option>
+                <option value="">Všechny kategorie</option>
                 {presentDivisions.map((d) => (
                   <option key={d.id} value={d.id}>{d.name}</option>
                 ))}
@@ -72,7 +73,7 @@ export function FightCardList({ fights, filterable = true }: Props) {
               aria-label={g.label}
             >
               <h3 className={s.groupTitle}>
-                {g.label} <span className={s.groupCount}>{g.fights.length} {g.fights.length === 1 ? 'fight' : 'fights'}</span>
+                {g.label} <span className={s.groupCount}>{plural(g.fights.length, 'zápas', 'zápasy', 'zápasů')}</span>
               </h3>
               <ol className={s.list}>
                 {g.fights.map((f) => (
@@ -84,7 +85,7 @@ export function FightCardList({ fights, filterable = true }: Props) {
             </motion.section>
           ))}
         </AnimatePresence>
-        {!visible.length && <p className={s.empty}>No fights match these filters.</p>}
+        {!visible.length && <p className={s.empty}>Filtrům neodpovídá žádný zápas.</p>}
       </div>
     </div>
   )

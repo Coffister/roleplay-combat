@@ -6,10 +6,10 @@ export const events: FightEvent[] = [
     name: 'CMRP Combat: Origins',
     date: '2025-12-13T20:00:00+01:00',
     location: 'Los Santos',
-    venue: 'Cypress Flats Warehouse',
+    venue: 'Sklad v Cypress Flats',
     status: 'completed',
     broadcast: 'Weazel News Sports',
-    description: 'Where it started. Four fights in a warehouse in Cypress Flats and a crowd that would not leave.',
+    description: 'Tady to všechno začalo. Čtyři zápasy ve skladu v Cypress Flats a publikum, které nechtělo odejít.',
   },
   {
     id: 'fight-night-00',
@@ -20,7 +20,7 @@ export const events: FightEvent[] = [
     venue: 'Vespucci Beach Arena',
     status: 'completed',
     broadcast: 'Weazel News Sports',
-    description: 'The first numbered card, with two title fights on the line.',
+    description: 'První číslovaný galavečer se dvěma titulovými zápasy.',
   },
   {
     id: 'fight-night-01',
@@ -30,8 +30,8 @@ export const events: FightEvent[] = [
     location: 'Los Santos',
     venue: 'Maze Bank Arena',
     status: 'upcoming',
-    broadcast: 'Live in-city on Weazel News Sports. Doors open 19:00, prelims 20:00, main card 21:30 (server time).',
-    description: 'Vega defends the lightweight title against Dante Okafor, and the welterweight #1 contender spot is decided in the co-main.',
+    broadcast: 'Živě ve městě na Weazel News Sports. Otevření v 19:00, předkarta ve 20:00, hlavní karta ve 21:30 (serverový čas).',
+    description: 'Vega obhajuje titul v lehké váze proti Dantemu Okaforovi a v co-main eventu se rozhodne o vyzyvateli č. 1 ve velterové váze.',
   },
   {
     id: 'fight-night-02',
@@ -42,6 +42,6 @@ export const events: FightEvent[] = [
     venue: 'Maze Bank Arena',
     status: 'upcoming',
     broadcast: 'Weazel News Sports',
-    description: 'Two title fights to close out the year. Full card to be announced.',
+    description: 'Dva titulové zápasy na konec roku. Celá karta bude oznámena.',
   },
 ]

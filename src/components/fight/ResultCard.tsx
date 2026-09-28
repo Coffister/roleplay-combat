@@ -1,12 +1,12 @@
 import { Link } from 'react-router'
 import type { FightView } from '../../lib/queries'
 import { getDivision } from '../../lib/queries'
-import { methodLabels } from '../../config/site'
+import { methodLabels, methodShortLabels } from '../../config/site'
 import { eventTitle, formatDateShort } from '../../lib/format'
 import { Avatar } from '../fighter'
 import s from './ResultCard.module.css'
 
-/** One completed fight: "WINNER def. LOSER — KO R2 3:21 — EVENT". */
+/** One completed fight: "VÍTĚZ porazil PORAŽENÉHO — KO 2. kolo 3:21 — AKCE". */
 export function ResultCard({ fight, showEvent = true }: { fight: FightView; showEvent?: boolean }) {
   const r = fight.result
   if (!r) return null
@@ -22,7 +22,7 @@ export function ResultCard({ fight, showEvent = true }: { fight: FightView; show
           <Link to={`/fighters/${winner.fighter.id}`} className={s.winner}>
             {winner.fighter.firstName} {winner.fighter.lastName}
           </Link>
-          <span className={s.def}>{draw ? 'drew with' : 'def.'}</span>
+          <span className={s.def}>{draw ? 'remizoval s' : 'porazil'}</span>
           <Link to={`/fighters/${loser.fighter.id}`} className={s.loser}>
             {loser.fighter.firstName} {loser.fighter.lastName}
           </Link>
@@ -30,13 +30,13 @@ export function ResultCard({ fight, showEvent = true }: { fight: FightView; show
       </div>
 
       <p className={s.method}>
-        <abbr title={methodLabels[r.method]} className={s.methodShort}>{r.method}</abbr>
+        <abbr title={methodLabels[r.method]} className={s.methodShort}>{methodShortLabels[r.method]}</abbr>
         {r.detail && <span className={s.detail}>{r.detail}</span>}
-        {r.round && <span className={`${s.time} tabular`}>R{r.round} · {r.time}</span>}
+        {r.round && <span className={`${s.time} tabular`}>{r.round}. kolo · {r.time}</span>}
       </p>
 
       <p className={s.meta}>
-        {fight.titleFight && <span className={s.titleTag}>Title</span>}
+        {fight.titleFight && <span className={s.titleTag}>Titul</span>}
         <span>{division?.name}</span>
         {showEvent && (
           <Link to={`/events/${fight.event.id}`} className={s.event}>

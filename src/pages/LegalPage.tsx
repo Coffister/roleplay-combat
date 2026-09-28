@@ -12,7 +12,7 @@ export default function LegalPage() {
   return (
     <>
       <Seo title={page.title} />
-      <PageHeader eyebrow={`Updated ${formatDateLong(page.updated)}`} title={page.title} />
+      <PageHeader eyebrow={`Aktualizováno ${formatDateLong(page.updated)}`} title={page.title} />
       <Section>
         <div className={s.prose}>
           {page.body.map((p, i) => <p key={i}>{p}</p>)}

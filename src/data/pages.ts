@@ -1,46 +1,46 @@
 /** Editorial copy for the About and legal pages. Kept out of JSX so another server can rewrite it. */
 
 export const about = {
-  statement: 'Organised violence, in character.',
+  statement: 'Organizované násilí. V roli.',
   intro:
-    'CMRP Combat is the official fight promotion of the CMRP roleplay server. Real rules, real rankings, real titles — all inside the city.',
+    'CMRP Combat je oficiální bojová organizace roleplay serveru CMRP. Skutečná pravidla, skutečné žebříčky, skutečné tituly — to vše přímo ve městě.',
   sections: [
     {
-      title: 'What it is',
-      text: 'A professional fight organisation that lives entirely in the roleplay world. Fighters are characters, fight nights are live in-city events, and every result becomes part of the story.',
+      title: 'Co to je',
+      text: 'Profesionální bojová organizace, která žije výhradně v roleplay světě. Zápasníci jsou postavy, galavečery jsou živé akce ve městě a každý výsledek se stává součástí příběhu.',
     },
     {
-      title: 'Part of CMRP',
-      text: 'CMRP Combat runs on the CMRP server. Promoters, referees, commentators and fighters are all players. What happens in the cage carries over into the rest of the city.',
+      title: 'Součást CMRP',
+      text: 'CMRP Combat běží na serveru CMRP. Promotéři, rozhodčí, komentátoři i zápasníci jsou hráči. Co se stane v kleci, se promítne do celého města.',
     },
     {
-      title: 'How fights work',
-      text: 'Fights are sanctioned and booked by matchmaking. Three rounds, or five for title and main events. A referee runs the bout, judges score it, and the result goes into the official record.',
+      title: 'Jak probíhají zápasy',
+      text: 'Zápasy schvaluje a páruje matchmaking. Tři kola, u titulových a hlavních zápasů pět. Zápas řídí rozhodčí, bodují ho bodoví rozhodčí a výsledek se zapíše do oficiálních záznamů.',
     },
     {
-      title: 'How to join',
-      text: 'Register your character, pick a weight class and wait for matchmaking to reach out on Discord. New fighters debut on the prelims. Win, and you move up the card.',
+      title: 'Jak se zapojit',
+      text: 'Zaregistruj svou postavu, vyber váhovou kategorii a počkej, až se ti matchmaking ozve na Discordu. Nováčci debutují na předkartě. Vyhraj a posuneš se výš.',
     },
   ],
 }
 
 export const legal: Record<string, { title: string; updated: string; body: string[] }> = {
   terms: {
-    title: 'Terms',
+    title: 'Podmínky',
     updated: '2026-06-01',
     body: [
-      'CMRP Combat is a fictional organisation that exists within the CMRP roleplay server. Names, events, records and results on this site describe roleplay characters, not real people or real sporting events.',
-      'By registering a fighter you confirm that the details describe your roleplay character and that you follow the CMRP server rules.',
-      'Placeholder text. Replace with your server’s own terms before going live.',
+      'CMRP Combat je fiktivní organizace, která existuje v rámci roleplay serveru CMRP. Jména, akce, bilance a výsledky na tomto webu popisují roleplay postavy, nikoli skutečné osoby ani skutečné sportovní akce.',
+      'Registrací zápasníka potvrzuješ, že údaje popisují tvou roleplay postavu a že dodržuješ pravidla serveru CMRP.',
+      'Zástupný text. Před spuštěním nahraď vlastními podmínkami serveru.',
     ],
   },
   privacy: {
-    title: 'Privacy',
+    title: 'Ochrana soukromí',
     updated: '2026-06-01',
     body: [
-      'When you register a fighter, we store the details you submit, including your Discord username, so matchmaking can contact you.',
-      'We do not sell or share your data. Ask on Discord to have your registration removed.',
-      'Placeholder text. Replace with your server’s own privacy policy before going live.',
+      'Při registraci zápasníka ukládáme údaje, které odešleš, včetně Discord uživatelského jména, aby tě mohl kontaktovat matchmaking.',
+      'Tvoje data neprodáváme ani nesdílíme. O smazání registrace si můžeš říct na Discordu.',
+      'Zástupný text. Před spuštěním nahraď vlastními zásadami ochrany soukromí.',
     ],
   },
 }

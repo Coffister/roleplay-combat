@@ -26,7 +26,7 @@ export function FormField({ label, required, hint, error, children, className }:
     <div className={[s.field, error && s.invalid, className].filter(Boolean).join(' ')}>
       <label htmlFor={id} className={s.fieldLabel}>
         {label}
-        {required ? <span aria-hidden className={s.req}>*</span> : <span className={s.optional}>Optional</span>}
+        {required ? <span aria-hidden className={s.req}>*</span> : <span className={s.optional}>Nepovinné</span>}
       </label>
       {children({ id, 'aria-describedby': describedBy, 'aria-invalid': error ? true : undefined })}
       {hint && <p id={hintId} className={s.hint}>{hint}</p>}

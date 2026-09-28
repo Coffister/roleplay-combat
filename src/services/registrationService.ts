@@ -15,7 +15,7 @@ const httpService = (endpoint: string): RegistrationService => ({
       else if (value != null) body.append(key, String(value))
     }
     const res = await fetch(endpoint, { method: 'POST', body })
-    if (!res.ok) throw new Error(`Submission failed (${res.status}). Please try again.`)
+    if (!res.ok) throw new Error(`Odeslání se nezdařilo (${res.status}). Zkus to prosím znovu.`)
     return res.json()
   },
 })
@@ -32,7 +32,7 @@ const mockService: RegistrationService = {
 /** Production build with no endpoint configured: fail loudly instead of pretending. */
 const unavailableService: RegistrationService = {
   async submit() {
-    throw new Error('Online registration is not open yet. Apply through our Discord in the meantime.')
+    throw new Error('Online registrace zatím není otevřená. Mezitím se přihlas přes náš Discord.')
   },
 }
 

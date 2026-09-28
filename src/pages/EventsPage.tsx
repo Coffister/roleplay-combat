@@ -16,11 +16,11 @@ export default function EventsPage() {
 
   return (
     <>
-      <Seo title="Events" description="Upcoming CMRP Combat fight nights and results from past events." />
-      <PageHeader eyebrow="Fight nights" title="Events" intro="Every card, every venue, every result." />
+      <Seo title="Akce" description="Nadcházející galavečery CMRP Combat a výsledky proběhlých akcí." />
+      <PageHeader eyebrow="Galavečery" title="Akce" intro="Každá karta, každé místo, každý výsledek." />
 
       <Section aria-labelledby="upcoming">
-        <SectionHeader index="01" eyebrow="On the calendar" title="Upcoming" id="upcoming" />
+        <SectionHeader index="01" eyebrow="V kalendáři" title="Nadcházející" id="upcoming" />
         {next ? (
           <div className={s.stack}>
             {card(next, 'feature')}
@@ -31,18 +31,18 @@ export default function EventsPage() {
             )}
           </div>
         ) : (
-          <p className={s.empty}>No events scheduled right now. Follow us on Discord for the next announcement.</p>
+          <p className={s.empty}>Momentálně není naplánovaná žádná akce. Sleduj náš Discord, ať ti neunikne další oznámení.</p>
         )}
       </Section>
 
       <Section aria-labelledby="past" tone="surface">
-        <SectionHeader index="02" eyebrow="The archive" title="Past events" id="past" action={{ label: 'All results', to: '/results' }} />
+        <SectionHeader index="02" eyebrow="Archiv" title="Proběhlé akce" id="past" action={{ label: 'Všechny výsledky', to: '/results' }} />
         {past.length ? (
           <ul className={s.grid3}>
             {past.map((e, i) => <li key={e.id}><Reveal delay={i * 0.06}>{card(e)}</Reveal></li>)}
           </ul>
         ) : (
-          <p className={s.empty}>No past events yet.</p>
+          <p className={s.empty}>Zatím žádné proběhlé akce.</p>
         )}
       </Section>
     </>

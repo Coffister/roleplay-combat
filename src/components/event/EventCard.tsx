@@ -2,7 +2,7 @@ import { Link } from 'react-router'
 import { ArrowRight } from 'lucide-react'
 import type { FightEvent } from '../../types'
 import type { FightView } from '../../lib/queries'
-import { formatDay, formatMonthYear, formatTime, formatWeekday } from '../../lib/format'
+import { formatDay, formatMonthYear, formatTime, formatWeekday, plural } from '../../lib/format'
 import { FighterAvatar } from '../fighter'
 import { StatusBadge } from '../ui/Badge'
 import s from './event.module.css'
@@ -57,7 +57,7 @@ export function EventCard({ event, mainEvent, fightCount, variant = 'default' }:
 
         {mainEvent && (
           <p className={s.mainEvent}>
-            <span className="label">Main event</span>
+            <span className="label">Hlavní zápas</span>
             <span className={s.mainNames}>
               {mainEvent.a.fighter.lastName} <span className={s.vsSmall}>vs</span> {mainEvent.b.fighter.lastName}
             </span>
@@ -67,11 +67,11 @@ export function EventCard({ event, mainEvent, fightCount, variant = 'default' }:
         <ul className={s.facts}>
           <li>{formatWeekday(event.date)} {formatTime(event.date)}</li>
           <li>{event.venue ? `${event.venue}, ` : ''}{event.location}</li>
-          <li>{fightCount} {fightCount === 1 ? 'fight' : 'fights'}</li>
+          <li>{plural(fightCount, 'zápas', 'zápasy', 'zápasů')}</li>
         </ul>
 
         <span className={s.cta} aria-hidden>
-          {completed ? 'Results' : 'Fight card'} <ArrowRight size={16} />
+          {completed ? 'Výsledky' : 'Karta zápasů'} <ArrowRight size={16} />
         </span>
       </div>
     </article>

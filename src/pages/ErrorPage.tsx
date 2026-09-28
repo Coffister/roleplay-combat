@@ -12,13 +12,13 @@ export function ErrorPage({ notFound }: { notFound?: boolean }) {
 
   return (
     <Container className={s.error}>
-      <Seo title={is404 ? 'Not found' : 'Error'} />
+      <Seo title={is404 ? 'Nenalezeno' : 'Chyba'} />
       <p className={s.errorCode} aria-hidden>{is404 ? '404' : 'KO'}</p>
-      <h1 className={s.errorTitle}>{is404 ? 'Nothing in this corner' : 'Something went wrong'}</h1>
+      <h1 className={s.errorTitle}>{is404 ? 'V tomhle rohu nikdo není' : 'Něco se pokazilo'}</h1>
       <p className={s.errorText}>
-        {is404 ? "The page you're looking for doesn't exist or has moved." : 'Try reloading the page. If it keeps happening, let us know on Discord.'}
+        {is404 ? 'Stránka, kterou hledáš, neexistuje nebo byla přesunuta.' : 'Zkus stránku načíst znovu. Pokud to přetrvává, dej nám vědět na Discordu.'}
       </p>
-      <LinkButton to="/" variant="outline">Back to home</LinkButton>
+      <LinkButton to="/" variant="outline">Zpět na úvod</LinkButton>
     </Container>
   )
 }

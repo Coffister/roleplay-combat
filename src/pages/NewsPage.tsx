@@ -9,8 +9,8 @@ export default function NewsPage() {
   const [lead, ...rest] = getNews()
   return (
     <>
-      <Seo title="News" description="Announcements, fight news and roster updates from CMRP Combat." />
-      <PageHeader eyebrow="Announcements" title="News" />
+      <Seo title="Novinky" description="Oznámení, zprávy ze zápasů a novinky ze soupisky CMRP Combat." />
+      <PageHeader eyebrow="Oznámení" title="Novinky" />
       <Section>
         {lead ? (
           <div className={s.stack}>
@@ -20,7 +20,7 @@ export default function NewsPage() {
             </ul>
           </div>
         ) : (
-          <p className={s.empty}>No news yet.</p>
+          <p className={s.empty}>Zatím žádné novinky.</p>
         )}
       </Section>
     </>

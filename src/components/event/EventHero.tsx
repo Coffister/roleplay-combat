@@ -13,7 +13,7 @@ import s from './EventHero.module.css'
 type EventHeroProps = {
   event: FightEvent
   mainEvent?: FightView
-  /** Small label above the title, e.g. "Next event". */
+  /** Small label above the title, e.g. "Další akce". */
   eyebrow: string
   actions?: ReactNode
   /** Extra content under the matchup, e.g. a countdown. */
@@ -67,7 +67,7 @@ export function EventHero({ event, mainEvent, eyebrow, actions, children }: Even
             <p className={s.slot}>
               {cardTypeLabels[mainEvent.cardType]}
               <span aria-hidden> · </span>
-              {division?.name}{mainEvent.titleFight && ' title'}
+              {division?.name}{mainEvent.titleFight && ' · o titul'}
             </p>
             <div className={s.names}>
               <div className={s.side}>
@@ -75,7 +75,7 @@ export function EventHero({ event, mainEvent, eyebrow, actions, children }: Even
                 <span className={s.last}>{mainEvent.a.fighter.lastName}</span>
                 <FighterRecord record={mainEvent.a.fighter.record} size="sm" />
               </div>
-              <span className={s.vs} aria-label="versus">vs</span>
+              <span className={s.vs} aria-label="proti">vs</span>
               <div className={`${s.side} ${s.sideB}`}>
                 <span className={s.first}>{mainEvent.b.fighter.firstName}</span>
                 <span className={s.last}>{mainEvent.b.fighter.lastName}</span>

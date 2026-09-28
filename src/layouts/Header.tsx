@@ -11,7 +11,7 @@ import s from './Header.module.css'
 
 export function Logo() {
   return (
-    <Link to="/" className={s.logo} aria-label={`${brand.organization} home`}>
+    <Link to="/" className={s.logo} aria-label={`${brand.organization} – úvod`}>
       <img src={brand.assets.mark} alt="" width={32} height={32} />
       <span className={s.wordmark}>{brand.organization}</span>
     </Link>
@@ -30,7 +30,7 @@ export function Header() {
       <div className={s.bar}>
         <Logo />
 
-        <nav aria-label="Main" className={s.desktopNav}>
+        <nav aria-label="Hlavní navigace" className={s.desktopNav}>
           <ul>
             {mainNav.map((item) => (
               <li key={item.to}>
@@ -46,7 +46,7 @@ export function Header() {
           {next && (
             <Link to={`/events/${next.id}`} className={s.nextEvent}>
               <span className={s.pulse} aria-hidden />
-              <span className="label">Next</span>
+              <span className="label">Další</span>
               <span className={s.nextName}>{eventTitle(next)}</span>
               <span className={s.nextDate}>{formatDateShort(next.date)}</span>
             </Link>
@@ -57,7 +57,7 @@ export function Header() {
             </a>
           )}
           <LinkButton to={registerNav.to} className={s.register}>{registerNav.label}</LinkButton>
-          <button type="button" className={s.menuButton} onClick={() => setOpen(true)} aria-label="Open menu" aria-expanded={open}>
+          <button type="button" className={s.menuButton} onClick={() => setOpen(true)} aria-label="Otevřít menu" aria-expanded={open}>
             <Menu aria-hidden />
           </button>
         </div>
@@ -67,11 +67,11 @@ export function Header() {
         <div className={s.mobile}>
           <div className={s.mobileTop}>
             <Logo />
-            <button type="button" className={s.menuButton} onClick={() => setOpen(false)} aria-label="Close menu">
+            <button type="button" className={s.menuButton} onClick={() => setOpen(false)} aria-label="Zavřít menu">
               <X aria-hidden />
             </button>
           </div>
-          <nav aria-label="Main" className={s.mobileNav}>
+          <nav aria-label="Hlavní navigace" className={s.mobileNav}>
             <ol>
               {[...mainNav, registerNav].map((item, i) => (
                 <li key={item.to} style={{ animationDelay: `${60 + i * 35}ms` }}>
@@ -85,7 +85,7 @@ export function Header() {
           </nav>
           {next && (
             <Link to={`/events/${next.id}`} className={s.mobileNext}>
-              <span className="label">Next event</span>
+              <span className="label">Další akce</span>
               <span className={s.nextName}>{eventTitle(next)}</span>
               <span className="label">{formatDateShort(next.date)} · {next.location}</span>
             </Link>

@@ -17,8 +17,8 @@ export function Footer() {
             <Logo />
             <p className={s.tagline}>{brand.tagline}</p>
           </div>
-          <nav aria-label="Footer" className={s.col}>
-            <h2 className="label">Navigate</h2>
+          <nav aria-label="Patička" className={s.col}>
+            <h2 className="label">Navigace</h2>
             <ul>
               {footerNav.map((l) => (
                 <li key={l.to}><Link to={l.to}>{l.label}</Link></li>
@@ -27,7 +27,7 @@ export function Footer() {
           </nav>
           {socials.length > 0 && (
             <div className={s.col}>
-              <h2 className="label">Follow</h2>
+              <h2 className="label">Sleduj nás</h2>
               <ul>
                 {socials.map(([key, url]) => (
                   <li key={key}>
@@ -41,7 +41,7 @@ export function Footer() {
         <div className={s.bottom}>
           <p className={s.project}>{brand.parentProject}</p>
           <p className="label">
-            © {new Date().getFullYear()} {brand.organization}. A fictional organisation within a roleplay server.
+            © {new Date().getFullYear()} {brand.organization}. Fiktivní organizace v rámci roleplay serveru.
           </p>
           <ul className={s.legal}>
             {legalNav.map((l) => (

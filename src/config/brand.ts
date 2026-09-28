@@ -6,13 +6,13 @@
 export const brand = {
   name: 'CMRP',
   organization: 'CMRP Combat',
-  tagline: 'Los Santos fights here.',
+  tagline: 'Tady bojuje Los Santos.',
   description:
-    'The official fight promotion of the CMRP roleplay server. Fight nights, fighters, rankings and results.',
-  parentProject: 'A CMRP Roleplay Project',
+    'Oficiální bojová organizace roleplay serveru CMRP. Galavečery, zápasníci, žebříčky a výsledky.',
+  parentProject: 'Projekt CMRP Roleplay',
   siteUrl: 'https://combat.cmrp.example',
-  locale: 'en-GB',
-  timeZone: 'Europe/Amsterdam',
+  locale: 'cs-CZ',
+  timeZone: 'Europe/Prague',
 
   colors: {
     bg: '#0b0b0c',

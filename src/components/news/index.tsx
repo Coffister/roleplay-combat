@@ -4,10 +4,10 @@ import { formatDateLong } from '../../lib/format'
 import s from './news.module.css'
 
 export const categoryLabels: Record<NewsCategory, string> = {
-  announcement: 'Announcement',
-  'fight-night': 'Fight Night',
-  roster: 'Roster',
-  results: 'Results',
+  announcement: 'Oznámení',
+  'fight-night': 'Galavečer',
+  roster: 'Soupiska',
+  results: 'Výsledky',
 }
 
 export function NewsCard({ article, variant = 'default' }: { article: NewsArticle; variant?: 'default' | 'lead' }) {

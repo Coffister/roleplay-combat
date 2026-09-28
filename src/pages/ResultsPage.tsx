@@ -1,7 +1,7 @@
 import { useSearchParams } from 'react-router'
 import { Seo } from '../lib/seo'
 import { getDivisions, getResults } from '../lib/queries'
-import { eventTitle, formatDateLong, yearOf } from '../lib/format'
+import { eventTitle, formatDateLong, plural, yearOf } from '../lib/format'
 import { ResultCard } from '../components/fight/ResultCard'
 import { FilterBar } from '../components/ui/FilterBar'
 import { PageHeader, Section } from '../components/ui/Layout'
@@ -35,20 +35,20 @@ export default function ResultsPage() {
 
   return (
     <>
-      <Seo title="Results" description="Every CMRP Combat fight result, filterable by event, division and year." />
-      <PageHeader eyebrow="The record books" title="Results" intro={`${all.length} fights, ${events.length} events.`}>
+      <Seo title="Výsledky" description="Všechny výsledky zápasů CMRP Combat s filtrem podle akce, kategorie a roku." />
+      <PageHeader eyebrow="Historie" title="Výsledky" intro={`${plural(all.length, 'zápas', 'zápasy', 'zápasů')} · ${plural(events.length, 'akce', 'akce', 'akcí')}`}>
         <FilterBar
           onReset={() => setParams({}, { replace: true, preventScrollReset: true })}
           filters={[
-            { id: 'event', label: 'Event', value: event, onChange: set('event'), options: events.map((e) => ({ value: e.id, label: eventTitle(e) })) },
-            { id: 'division', label: 'Division', value: division, onChange: set('division'), options: getDivisions().map((d) => ({ value: d.id, label: d.name })) },
-            { id: 'year', label: 'Year', value: year, onChange: set('year'), options: years.map((y) => ({ value: y, label: y })) },
+            { id: 'event', label: 'Akce', value: event, onChange: set('event'), options: events.map((e) => ({ value: e.id, label: eventTitle(e) })) },
+            { id: 'division', label: 'Kategorie', value: division, onChange: set('division'), options: getDivisions().map((d) => ({ value: d.id, label: d.name })) },
+            { id: 'year', label: 'Rok', value: year, onChange: set('year'), options: years.map((y) => ({ value: y, label: y })) },
           ]}
         />
       </PageHeader>
 
       <Section>
-        <p className="sr-only" aria-live="polite">{results.length} results</p>
+        <p className="sr-only" aria-live="polite">Výsledků: {results.length}</p>
         {groups.size ? (
           <div className={s.resultGroups}>
             {[...groups].map(([id, fights]) => (
@@ -64,7 +64,7 @@ export default function ResultsPage() {
             ))}
           </div>
         ) : (
-          <p className={s.empty}>No results match these filters.</p>
+          <p className={s.empty}>Filtrům neodpovídá žádný výsledek.</p>
         )}
       </Section>
     </>

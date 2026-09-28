@@ -25,26 +25,26 @@ const empty: RegistrationInput = {
 /** Per-step validation. Returns field → message for everything that fails. */
 const validators: ((v: RegistrationInput) => Errors)[] = [
   (v) => ({
-    ...(v.characterName.trim().length < 3 && { characterName: 'Enter your character’s full name (at least 3 characters).' }),
-    ...(!/^\d+$/.test(v.age) || +v.age < 18 || +v.age > 70 ? { age: 'Fighters must be between 18 and 70.' } : {}),
-    ...(!v.nationality.trim() && { nationality: 'Enter a nationality.' }),
-    ...(!v.divisionId && { divisionId: 'Choose a weight class.' }),
+    ...(v.characterName.trim().length < 3 && { characterName: 'Zadej celé jméno postavy (alespoň 3 znaky).' }),
+    ...(!/^\d+$/.test(v.age) || +v.age < 18 || +v.age > 70 ? { age: 'Zápasníkovi musí být 18 až 70 let.' } : {}),
+    ...(!v.nationality.trim() && { nationality: 'Zadej národnost.' }),
+    ...(!v.divisionId && { divisionId: 'Vyber váhovou kategorii.' }),
   }),
   (v) => ({
-    ...(!/^[a-z0-9_.]{2,32}$/.test(v.discord.trim()) && { discord: 'Use your Discord username: 2–32 lowercase letters, numbers, dots or underscores.' }),
-    ...(!v.fightingStyle && { fightingStyle: 'Choose a fighting style.' }),
+    ...(!/^[a-z0-9_.]{2,32}$/.test(v.discord.trim()) && { discord: 'Zadej Discord uživatelské jméno: 2–32 malých písmen, číslic, teček nebo podtržítek.' }),
+    ...(!v.fightingStyle && { fightingStyle: 'Vyber bojový styl.' }),
   }),
   (v) => ({
-    ...(v.experience.trim().length < 20 && { experience: 'Tell us a bit more (at least 20 characters).' }),
-    ...(v.bio.trim().length < 40 && { bio: 'Write at least 40 characters so we can introduce you.' }),
-    ...(v.profileImage && v.profileImage.size > MAX_IMAGE_MB * 1024 * 1024 && { profileImage: `Image must be under ${MAX_IMAGE_MB} MB.` }),
+    ...(v.experience.trim().length < 20 && { experience: 'Napiš toho trochu víc (alespoň 20 znaků).' }),
+    ...(v.bio.trim().length < 40 && { bio: 'Napiš alespoň 40 znaků, ať tě můžeme představit.' }),
+    ...(v.profileImage && v.profileImage.size > MAX_IMAGE_MB * 1024 * 1024 && { profileImage: `Obrázek musí mít méně než ${MAX_IMAGE_MB} MB.` }),
   }),
   (v) => ({
-    ...(!v.agreeRules && { agreeRules: 'You need to accept the rules to register.' }),
+    ...(!v.agreeRules && { agreeRules: 'Pro registraci musíš přijmout pravidla.' }),
   }),
 ]
 
-const steps = ['Fighter', 'Background', 'Experience', 'Submit']
+const steps = ['Zápasník', 'Zázemí', 'Zkušenosti', 'Odeslat']
 
 type Status = { state: 'idle' } | { state: 'submitting' } | { state: 'error'; message: string } | { state: 'done'; reference: string }
 
@@ -104,25 +104,25 @@ export default function RegisterPage() {
       setStatus({ state: 'done', reference })
       window.scrollTo({ top: 0 })
     } catch (err) {
-      setStatus({ state: 'error', message: err instanceof Error ? err.message : 'Something went wrong. Please try again.' })
+      setStatus({ state: 'error', message: err instanceof Error ? err.message : 'Něco se pokazilo. Zkus to prosím znovu.' })
     }
   }
 
   if (status.state === 'done') {
     return (
       <Container className={s.page}>
-        <Seo title="Registration received" />
+        <Seo title="Registrace přijata" />
         <motion.div className={s.success} initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} role="status">
           <span className={s.successIcon} aria-hidden><Check size={32} /></span>
-          <p className="label">Reference {status.reference}</p>
-          <h1 className={s.title}>You’re on the list</h1>
+          <p className="label">Číslo přihlášky {status.reference}</p>
+          <h1 className={s.title}>Jsi na seznamu</h1>
           <p className={s.lead}>
-            Thanks, {values.characterName.split(' ')[0]}. Matchmaking reviews every application. We’ll reach out to <strong>{values.discord}</strong> on Discord with next steps, usually within a week.
+            Díky, {values.characterName.split(' ')[0]}. Matchmaking projde každou přihlášku. Ozveme se ti na Discordu (<strong>{values.discord}</strong>) s dalším postupem, obvykle do týdne.
           </p>
           <div className={s.successActions}>
-            <LinkButton to="/events">See upcoming events</LinkButton>
+            <LinkButton to="/events">Nadcházející akce</LinkButton>
             {brand.social.discord && (
-              <a className={s.textLink} href={brand.social.discord} target="_blank" rel="noreferrer">Join the Discord</a>
+              <a className={s.textLink} href={brand.social.discord} target="_blank" rel="noreferrer">Připoj se na Discord</a>
             )}
           </div>
         </motion.div>
@@ -132,30 +132,30 @@ export default function RegisterPage() {
 
   const division = divisions.find((d) => d.id === values.divisionId)
   const summary: [string, string][] = [
-    ['Character', values.characterName],
-    ['Nickname', values.nickname || '—'],
-    ['Age', values.age],
-    ['Nationality', values.nationality],
-    ['Weight class', division ? `${division.name} (${division.limit})` : '—'],
-    ['Height', values.height || '—'],
+    ['Postava', values.characterName],
+    ['Přezdívka', values.nickname || '—'],
+    ['Věk', values.age],
+    ['Národnost', values.nationality],
+    ['Váhová kategorie', division ? `${division.name} (${division.limit})` : '—'],
+    ['Výška', values.height || '—'],
     ['Discord', values.discord],
-    ['Style', values.fightingStyle],
-    ['Team', values.team || '—'],
-    ['Photo', values.profileImage?.name ?? '—'],
+    ['Styl', values.fightingStyle],
+    ['Tým', values.team || '—'],
+    ['Fotka', values.profileImage?.name ?? '—'],
   ]
 
   return (
     <div className={s.layout}>
-      <Seo title="Register" description="Register your fighter and join the CMRP Combat roster." />
+      <Seo title="Registrace" description="Zaregistruj svého zápasníka a dostaň se na soupisku CMRP Combat." />
 
       <aside className={s.intro}>
-        <p className="label">Fighter registration</p>
-        <h1 className={s.title}>Step into<br /> the cage</h1>
-        <p className={s.lead}>Think you have what it takes? Register your fighter and enter the {brand.organization} roster.</p>
+        <p className="label">Registrace zápasníka</p>
+        <h1 className={s.title}>Vstup<br /> do klece</h1>
+        <p className={s.lead}>Myslíš, že na to máš? Zaregistruj svého zápasníka a dostaň se na soupisku {brand.organization}.</p>
         <ul className={s.points}>
-          <li><strong>In character.</strong> Register your RP character, not yourself.</li>
-          <li><strong>All levels.</strong> Debuts go on the prelims; win and you move up.</li>
-          <li><strong>Reviewed by matchmaking.</strong> We contact you on Discord.</li>
+          <li><strong>V roli.</strong> Registruješ svou RP postavu, ne sebe.</li>
+          <li><strong>Všechny úrovně.</strong> Nováčci začínají na předkartě. Vyhraj a posuneš se výš.</li>
+          <li><strong>Schvaluje matchmaking.</strong> Ozveme se ti na Discordu.</li>
         </ul>
       </aside>
 
@@ -177,25 +177,25 @@ export default function RegisterPage() {
 
             {step === 0 && (
               <div className={s.grid}>
-                <FormField label="Character name" required error={errors.characterName} className={s.full}>
-                  {(p) => <input {...p} {...bind('characterName')} className={inputClass} autoComplete="off" placeholder="e.g. Marcus Vega" />}
+                <FormField label="Jméno postavy" required error={errors.characterName} className={s.full}>
+                  {(p) => <input {...p} {...bind('characterName')} className={inputClass} autoComplete="off" placeholder="např. Marcus Vega" />}
                 </FormField>
-                <FormField label="Nickname" hint="Your fight name, without quotes." error={errors.nickname}>
-                  {(p) => <input {...p} {...bind('nickname')} className={inputClass} autoComplete="off" placeholder="e.g. The Wolf" />}
+                <FormField label="Přezdívka" hint="Tvoje bojové jméno, bez uvozovek." error={errors.nickname}>
+                  {(p) => <input {...p} {...bind('nickname')} className={inputClass} autoComplete="off" placeholder="např. The Wolf" />}
                 </FormField>
-                <FormField label="Age" required error={errors.age}>
+                <FormField label="Věk" required error={errors.age}>
                   {(p) => <input {...p} {...bind('age')} className={inputClass} inputMode="numeric" />}
                 </FormField>
-                <FormField label="Nationality" required error={errors.nationality}>
+                <FormField label="Národnost" required error={errors.nationality}>
                   {(p) => <input {...p} {...bind('nationality')} className={inputClass} />}
                 </FormField>
-                <FormField label="Height" hint={'e.g. 5\'11" or 180 cm'} error={errors.height}>
+                <FormField label="Výška" hint="např. 180 cm" error={errors.height}>
                   {(p) => <input {...p} {...bind('height')} className={inputClass} />}
                 </FormField>
-                <FormField label="Weight class" required error={errors.divisionId} className={s.full}>
+                <FormField label="Váhová kategorie" required error={errors.divisionId} className={s.full}>
                   {(p) => (
                     <select {...p} {...bind('divisionId')} className={selectClass}>
-                      <option value="">Select a division</option>
+                      <option value="">Vyber kategorii</option>
                       {divisions.map((d) => <option key={d.id} value={d.id}>{d.name} · {d.limit}</option>)}
                     </select>
                   )}
@@ -205,21 +205,21 @@ export default function RegisterPage() {
 
             {step === 1 && (
               <div className={s.grid}>
-                <FormField label="Discord username" required hint="So matchmaking can contact you." error={errors.discord}>
+                <FormField label="Discord uživatelské jméno" required hint="Aby tě mohl kontaktovat matchmaking." error={errors.discord}>
                   {(p) => <input {...p} {...bind('discord')} className={inputClass} autoComplete="off" autoCapitalize="none" spellCheck={false} />}
                 </FormField>
-                <FormField label="Fighting style" required error={errors.fightingStyle}>
+                <FormField label="Bojový styl" required error={errors.fightingStyle}>
                   {(p) => (
                     <select {...p} {...bind('fightingStyle')} className={selectClass}>
-                      <option value="">Select a style</option>
+                      <option value="">Vyber styl</option>
                       {fightingStyles.map((st) => <option key={st}>{st}</option>)}
                     </select>
                   )}
                 </FormField>
-                <FormField label="Team / gym" error={errors.team}>
+                <FormField label="Tým / gym" error={errors.team}>
                   {(p) => <input {...p} {...bind('team')} className={inputClass} />}
                 </FormField>
-                <FormField label="Social links" hint="Clips or socials for your character. One per line." error={errors.socialLinks}>
+                <FormField label="Odkazy na sociální sítě" hint="Klipy nebo sítě tvé postavy. Jeden odkaz na řádek." error={errors.socialLinks}>
                   {(p) => <textarea {...p} {...bind('socialLinks')} className={inputClass} rows={3} />}
                 </FormField>
               </div>
@@ -227,22 +227,22 @@ export default function RegisterPage() {
 
             {step === 2 && (
               <div className={s.grid}>
-                <FormField label="Previous experience" required hint="Fights in the city, training, record so far." error={errors.experience} className={s.full}>
+                <FormField label="Předchozí zkušenosti" required hint="Zápasy ve městě, trénink, dosavadní bilance." error={errors.experience} className={s.full}>
                   {(p) => <textarea {...p} {...bind('experience')} className={inputClass} rows={4} />}
                 </FormField>
-                <FormField label="Short biography" required hint="How the commentators should introduce you." error={errors.bio} className={s.full}>
+                <FormField label="Krátký životopis" required hint="Jak tě mají představit komentátoři." error={errors.bio} className={s.full}>
                   {(p) => <textarea {...p} {...bind('bio')} className={inputClass} rows={4} />}
                 </FormField>
-                <FormField label="Profile image" hint={`PNG or JPG, under ${MAX_IMAGE_MB} MB. A cut-out with a plain background works best.`} error={errors.profileImage}>
+                <FormField label="Profilová fotka" hint={`PNG nebo JPG, do ${MAX_IMAGE_MB} MB. Nejlépe vypadá výřez s čistým pozadím.`} error={errors.profileImage}>
                   {(p) => (
                     <div className={s.upload}>
                       <input {...p} name="profileImage" type="file" accept="image/png,image/jpeg,image/webp" className={s.file}
                         onChange={(e) => set('profileImage', e.target.files?.[0] ?? null)} />
-                      {preview && <img src={preview} alt="Selected profile image preview" className={s.preview} />}
+                      {preview && <img src={preview} alt="Náhled vybrané profilové fotky" className={s.preview} />}
                     </div>
                   )}
                 </FormField>
-                <FormField label="Additional notes" error={errors.notes}>
+                <FormField label="Další poznámky" error={errors.notes}>
                   {(p) => <textarea {...p} {...bind('notes')} className={inputClass} rows={4} />}
                 </FormField>
               </div>
@@ -255,11 +255,11 @@ export default function RegisterPage() {
                     <div key={k}><dt className="label">{k}</dt><dd>{v}</dd></div>
                   ))}
                 </dl>
-                <FormField label="Rules" required error={errors.agreeRules}>
+                <FormField label="Pravidla" required error={errors.agreeRules}>
                   {(p) => (
                     <label className={s.check}>
                       <input {...p} name="agreeRules" type="checkbox" checked={values.agreeRules} onChange={(e) => set('agreeRules', e.target.checked)} />
-                      <span>I accept the {brand.organization} rules and understand that fights happen in character on the {brand.name} server.</span>
+                      <span>Přijímám pravidla {brand.organization} a beru na vědomí, že zápasy probíhají v roli na serveru {brand.name}.</span>
                     </label>
                   )}
                 </FormField>
@@ -271,11 +271,11 @@ export default function RegisterPage() {
           <div className={s.nav}>
             {step > 0 ? (
               <Button type="button" variant="ghost" onClick={() => go(step - 1)}>
-                <ArrowLeft aria-hidden /> Back
+                <ArrowLeft aria-hidden /> Zpět
               </Button>
             ) : <span />}
             <Button type="submit" size="lg" disabled={status.state === 'submitting'} aria-busy={status.state === 'submitting'}>
-              {step < steps.length - 1 ? <>Continue <ArrowRight aria-hidden /></> : status.state === 'submitting' ? 'Submitting…' : 'Submit registration'}
+              {step < steps.length - 1 ? <>Pokračovat <ArrowRight aria-hidden /></> : status.state === 'submitting' ? 'Odesílám…' : 'Odeslat registraci'}
             </Button>
           </div>
         </form>

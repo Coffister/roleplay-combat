@@ -5,5 +5,5 @@
 <path d="M1080 0H1130L830 900H780Z" fill="#111113"/>
 <path d="M300 150H700L950 400V700L700 950H300" fill="none" stroke="#f1ede6" stroke-opacity=".08" stroke-width="3"/>
 <text x="90" y="780" font-family="Arial Narrow, Arial, sans-serif" font-weight="900" font-size="420" fill="#f1ede6" fill-opacity=".92" letter-spacing="-10">#2</text>
-<text x="100" y="140" font-family="Arial, sans-serif" font-weight="700" font-size="38" letter-spacing="10" fill="#f1ede6" fill-opacity=".7">RANKINGS</text>
+<text x="100" y="140" font-family="Arial, sans-serif" font-weight="700" font-size="38" letter-spacing="10" fill="#f1ede6" fill-opacity=".7">ŽEBŘÍČKY</text>
 </svg>

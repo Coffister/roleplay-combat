@@ -21,9 +21,15 @@ export const formatRecord = (r: Fighter['record']) => `${r.wins}-${r.losses}-${r
 
 export const eventTitle = (e: FightEvent) => (e.number ? `${e.name} ${e.number}` : e.name)
 
-/** "C" for champion, "#3" for ranked, empty when unranked. */
-export const rankLabel = (rank?: number) => (rank === 0 ? 'C' : rank ? `#${rank}` : '')
+/** "Š" for šampion, "#3" for ranked, empty when unranked. */
+export const rankLabel = (rank?: number) => (rank === 0 ? 'Š' : rank ? `#${rank}` : '')
 
 export const pad2 = (n: number) => String(n).padStart(2, '0')
 export const formatDay = (iso: string) => fmt({ day: '2-digit' }).format(new Date(iso))
-export const formatMonthYear = (iso: string) => fmt({ month: 'short', year: 'numeric' }).format(new Date(iso))
+/** Month in genitive to follow the day number ("prosince 2026"), since Intl gives the nominative for a bare month. */
+export const formatMonthYear = (iso: string) => formatDateLong(iso).replace(/^\d+\.\s*/, '')
+
+/** Czech plural: 1 zápas, 2–4 zápasy, 5+ zápasů. */
+export const plural = (n: number, one: string, few: string, many: string) =>
+  `${n} ${n === 1 ? one : n >= 2 && n <= 4 ? few : many}`
+export const roundsLabel = (n: number) => plural(n, 'kolo', 'kola', 'kol')

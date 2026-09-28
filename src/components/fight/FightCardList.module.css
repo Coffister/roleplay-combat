@@ -27,8 +27,13 @@
   gap: var(--space-8);
 }
 
+.groups > * {
+  min-width: 0;
+}
+
 .groupTitle {
   display: flex;
+  flex-wrap: wrap;
   align-items: baseline;
   gap: var(--space-3);
   margin-bottom: var(--space-4);
@@ -48,6 +53,10 @@
   gap: var(--space-3);
   list-style: none;
   padding: 0;
+}
+
+.list > li {
+  min-width: 0;
 }
 
 

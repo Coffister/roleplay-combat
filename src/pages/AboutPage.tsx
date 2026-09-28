@@ -10,17 +10,17 @@ import s from './pages.module.css'
 
 export default function AboutPage() {
   const stats = [
-    ['Fighters', getFighters().length],
-    ['Divisions', getDivisions().length],
-    ['Events', getPastEvents().length + getUpcomingEvents().length],
-    ['Fights', getResults().length],
+    ['Zápasníci', getFighters().length],
+    ['Kategorie', getDivisions().length],
+    ['Akce', getPastEvents().length + getUpcomingEvents().length],
+    ['Zápasy', getResults().length],
   ] as const
 
   return (
     <>
-      <Seo title="About" description={about.intro} />
+      <Seo title="O nás" description={about.intro} />
       <Section className={s.aboutHero}>
-        <p className="label">About {brand.organization}</p>
+        <p className="label">O {brand.organization}</p>
         <h1 className={s.statement}>{about.statement}</h1>
         <p className={s.aboutIntro}>{about.intro}</p>
       </Section>
@@ -36,7 +36,7 @@ export default function AboutPage() {
         </dl>
       </Section>
 
-      <Section aria-label="How it works">
+      <Section aria-label="Jak to funguje">
         <ol className={s.aboutList}>
           {about.sections.map((sec, i) => (
             <li key={sec.title}>
@@ -49,8 +49,8 @@ export default function AboutPage() {
           ))}
         </ol>
         <div className={s.aboutCta}>
-          <LinkButton to="/register" size="lg">Register as fighter <ArrowRight aria-hidden /></LinkButton>
-          <LinkButton to="/events" size="lg" variant="outline">See events</LinkButton>
+          <LinkButton to="/register" size="lg">Staň se zápasníkem <ArrowRight aria-hidden /></LinkButton>
+          <LinkButton to="/events" size="lg" variant="outline">Zobrazit akce</LinkButton>
         </div>
       </Section>
     </>

@@ -8,7 +8,7 @@ export function Badge({ tone = 'default', children, className }: { tone?: Tone; 
   return <span className={[s.badge, s[tone], className].filter(Boolean).join(' ')}>{children}</span>
 }
 
-const statusText: Record<Status, string> = { upcoming: 'Upcoming', live: 'Live now', completed: 'Final' }
+const statusText: Record<Status, string> = { upcoming: 'Nadcházející', live: 'Živě', completed: 'Ukončeno' }
 
 export function StatusBadge({ status }: { status: Status }) {
   return (

@@ -11,7 +11,7 @@ import { Section, SectionHeader } from '../components/ui/Layout'
 import { ErrorPage } from './ErrorPage'
 import s from './pages.module.css'
 
-const eyebrows = { upcoming: 'Upcoming event', live: 'Live now', completed: 'Final results' }
+const eyebrows = { upcoming: 'Nadcházející akce', live: 'Právě živě', completed: 'Konečné výsledky' }
 
 export default function EventDetailPage() {
   const { eventId = '' } = useParams()
@@ -23,11 +23,11 @@ export default function EventDetailPage() {
   const completed = event.status === 'completed'
   const title = eventTitle(event)
   const info = [
-    ['Date', `${formatWeekday(event.date)}, ${formatDateLong(event.date)}`],
-    ['Start', formatTime(event.date)],
-    ['Venue', event.venue],
-    ['Location', event.location],
-    ['Broadcast', event.broadcast],
+    ['Datum', `${formatWeekday(event.date)}, ${formatDateLong(event.date)}`],
+    ['Začátek', formatTime(event.date)],
+    ['Místo konání', event.venue],
+    ['Lokalita', event.location],
+    ['Přenos', event.broadcast],
   ].filter((x): x is [string, string] => !!x[1])
 
   return (
@@ -43,13 +43,13 @@ export default function EventDetailPage() {
         actions={
           !completed && (
             <LinkButton to="#fight-card" size="lg" moving>
-              Full fight card <ArrowRight aria-hidden />
+              Celá karta zápasů <ArrowRight aria-hidden />
             </LinkButton>
           )
         }
       />
 
-      <Section tone="surface" aria-label="Event information">
+      <Section tone="surface" aria-label="Informace o akci">
         <div className={s.eventInfo}>
           <div>
             {event.description && <p className={s.lede}>{event.description}</p>}
@@ -67,7 +67,7 @@ export default function EventDetailPage() {
       </Section>
 
       <Section aria-labelledby="fight-card">
-        <SectionHeader index="01" eyebrow={title} title={completed ? 'Results' : 'Fight card'} id="fight-card" />
+        <SectionHeader index="01" eyebrow={title} title={completed ? 'Výsledky' : 'Karta zápasů'} id="fight-card" />
         <FightCardList fights={fights} />
       </Section>
     </>

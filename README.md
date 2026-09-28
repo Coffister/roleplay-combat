@@ -23,6 +23,8 @@ Stack: React 19, TypeScript, Vite, React Router, Motion, Lucide. Styling is CSS 
 | Fighters, fights, events, rankings, news | `src/data/*.ts` |
 | About / Terms / Privacy copy | `src/data/pages.ts` |
 
+The site is in Czech (`cs-CZ`, `Europe/Prague` in `brand.ts`). Content text is in `src/data/` and labels in `src/config/`. Short UI strings (buttons, headings) are written directly in the components. There is no i18n layer, because only one language is needed. Add one if the site ever needs to be multilingual.
+
 At build time, `vite.config.ts` injects the brand colors and fonts into `index.html` as CSS variables. Restart `npm run dev` after editing `brand.ts`.
 
 ## Architecture

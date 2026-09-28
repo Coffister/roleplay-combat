@@ -7,10 +7,10 @@ function remaining(target: number) {
   return {
     done: ms === 0,
     units: [
-      { label: 'Days', value: Math.floor(ms / 86_400_000) },
-      { label: 'Hours', value: Math.floor(ms / 3_600_000) % 24 },
-      { label: 'Min', value: Math.floor(ms / 60_000) % 60 },
-      { label: 'Sec', value: Math.floor(ms / 1000) % 60 },
+      { label: 'Dní', value: Math.floor(ms / 86_400_000) },
+      { label: 'Hodin', value: Math.floor(ms / 3_600_000) % 24 },
+      { label: 'Minut', value: Math.floor(ms / 60_000) % 60 },
+      { label: 'Sekund', value: Math.floor(ms / 1000) % 60 },
     ],
   }
 }
@@ -25,11 +25,11 @@ export function Countdown({ date, size = 'md' }: { date: string; size?: 'md' | '
     return () => clearInterval(id)
   }, [target])
 
-  if (state.done) return <p className={s.countdownDone}>Fight night is here</p>
+  if (state.done) return <p className={s.countdownDone}>Galavečer právě začal</p>
 
   return (
     <div className={`${s.countdown} ${s[`countdown-${size}`]}`}>
-      <p className="sr-only">Starts {formatDateLong(date)} at {formatTime(date)}</p>
+      <p className="sr-only">Začátek {formatDateLong(date)} v {formatTime(date)}</p>
       <div aria-hidden className={s.units}>
         {state.units.map((u) => (
           <div key={u.label} className={s.unit}>

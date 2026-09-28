@@ -56,7 +56,7 @@ export function FighterAvatar({ fighter, mirror, alt = '', priority, className }
 export function FighterRecord({ record, size = 'md' }: { record: Fighter['record']; size?: 'sm' | 'md' | 'lg' }) {
   const { wins, losses, draws } = record
   return (
-    <span className={`${s.record} ${s[`record-${size}`]} tabular`} aria-label={`Record: ${wins} wins, ${losses} losses, ${draws} draws`}>
+    <span className={`${s.record} ${s[`record-${size}`]} tabular`} aria-label={`Bilance – výhry: ${wins}, prohry: ${losses}, remízy: ${draws}`}>
       {formatRecord(record)}
     </span>
   )
@@ -64,15 +64,15 @@ export function FighterRecord({ record, size = 'md' }: { record: Fighter['record
 
 export function RankBadge({ rank }: { rank?: number }) {
   if (rank === undefined) return null
-  return rank === 0 ? <Badge tone="accent">Champion</Badge> : <Badge tone="outline">{rankLabel(rank)}</Badge>
+  return rank === 0 ? <Badge tone="accent">Šampion</Badge> : <Badge tone="outline">{rankLabel(rank)}</Badge>
 }
 
-/** Name with nickname, in the "JOHN "THE WOLF" DOE" poster style. */
+/** Name with nickname, in the "JOHN „THE WOLF“ DOE" poster style. */
 export function FighterName({ fighter, as: Tag = 'span', className }: { fighter: Fighter; as?: 'span' | 'h1' | 'h2' | 'h3'; className?: string }) {
   return (
     <Tag className={[s.name, className].filter(Boolean).join(' ')}>
       <span className={s.first}>{fighter.firstName}</span>{' '}
-      {fighter.nickname && <span className={s.nick}>“{fighter.nickname}”</span>}{' '}
+      {fighter.nickname && <span className={s.nick}>„{fighter.nickname}“</span>}{' '}
       <span className={s.last}>{fighter.lastName}</span>
     </Tag>
   )
@@ -93,7 +93,7 @@ export function FighterCard({ fighter, rank }: { fighter: Fighter; rank?: number
             <span className={s.first}>{fighter.firstName}</span> {fighter.lastName}
           </Link>
         </h3>
-        {fighter.nickname && <p className={s.cardNick}>“{fighter.nickname}”</p>}
+        {fighter.nickname && <p className={s.cardNick}>„{fighter.nickname}“</p>}
         <FighterRecord record={fighter.record} size="sm" />
       </div>
     </article>
@@ -104,25 +104,25 @@ export function FighterStats({ fighter }: { fighter: Fighter }) {
   const { wins, losses, draws } = fighter.record
   const methods = [
     { label: 'KO / TKO', value: fighter.winsByKO },
-    { label: 'Submission', value: fighter.winsBySubmission },
-    { label: 'Decision', value: fighter.winsByDecision },
+    { label: 'Submise', value: fighter.winsBySubmission },
+    { label: 'Rozhodnutí', value: fighter.winsByDecision },
   ].filter((m): m is { label: string; value: number } => m.value !== undefined)
   const division = getDivision(fighter.divisionId)
   const details = [
-    ['Division', division ? `${division.name} (${division.limit})` : undefined],
-    ['Nationality', fighter.nationality],
-    ['Team', fighter.team],
-    ['Style', fighter.fightingStyle],
-    ['Age', fighter.age?.toString()],
-    ['Height', fighter.height],
-    ['Weight', fighter.weight],
-    ['Reach', fighter.reach],
+    ['Kategorie', division ? `${division.name} (${division.limit})` : undefined],
+    ['Národnost', fighter.nationality],
+    ['Tým', fighter.team],
+    ['Styl', fighter.fightingStyle],
+    ['Věk', fighter.age?.toString()],
+    ['Výška', fighter.height],
+    ['Váha', fighter.weight],
+    ['Rozpětí paží', fighter.reach],
   ].filter((d): d is [string, string] => !!d[1])
 
   return (
     <div className={s.stats}>
       <dl className={s.wld}>
-        {[['Wins', wins], ['Losses', losses], ['Draws', draws]].map(([label, value]) => (
+        {[['Výhry', wins], ['Prohry', losses], ['Remízy', draws]].map(([label, value]) => (
           <div key={label}>
             <dt className="label">{label}</dt>
             <dd className="display tabular">{value}</dd>
@@ -132,7 +132,7 @@ export function FighterStats({ fighter }: { fighter: Fighter }) {
 
       {methods.length > 0 && wins > 0 && (
         <div>
-          <h2 className={`label ${s.statsHeading}`}>Wins by method</h2>
+          <h2 className={`label ${s.statsHeading}`}>Výhry podle způsobu</h2>
           <dl className={s.methods}>
             {methods.map((m) => (
               <div key={m.label} className={s.method}>

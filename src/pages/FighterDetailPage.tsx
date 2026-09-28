@@ -11,8 +11,8 @@ import { Badge } from '../components/ui/Badge'
 import { ErrorPage } from './ErrorPage'
 import s from './FighterDetailPage.module.css'
 
-const outcomeLetter = { win: 'W', loss: 'L', draw: 'D' } as const
-const outcomeWord = { win: 'Win', loss: 'Loss', draw: 'Draw' } as const
+const outcomeLetter = { win: 'V', loss: 'P', draw: 'R' } as const
+const outcomeWord = { win: 'Výhra', loss: 'Prohra', draw: 'Remíza' } as const
 
 export default function FighterDetailPage() {
   const { fighterId = '' } = useParams()
@@ -28,7 +28,7 @@ export default function FighterDetailPage() {
     <>
       <Seo
         title={fullName(fighter)}
-        description={`${fullName(fighter)}${fighter.nickname ? ` “${fighter.nickname}”` : ''}, ${division?.name ?? ''} fighter. Record ${formatRecord(fighter.record)}.`}
+        description={`${fullName(fighter)}${fighter.nickname ? ` „${fighter.nickname}“` : ''}, ${division?.name ?? ''}. Bilance ${formatRecord(fighter.record)}.`}
         image={fighter.portrait}
       />
 
@@ -36,7 +36,7 @@ export default function FighterDetailPage() {
         <div className={s.heroInner}>
           <motion.div className={s.portraitWrap} initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}>
             <span className={s.bgName} aria-hidden>{fighter.lastName}</span>
-            <FighterAvatar fighter={fighter} alt={`Portrait of ${fullName(fighter)}`} priority className={s.portrait} />
+            <FighterAvatar fighter={fighter} alt={`Portrét: ${fullName(fighter)}`} priority className={s.portrait} />
           </motion.div>
 
           <motion.div className={s.identity} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.6, delay: 0.2 }}>
@@ -46,7 +46,7 @@ export default function FighterDetailPage() {
             </div>
             <h1 id="fighter-name" className={s.name}>
               <span className={s.first}>{fighter.firstName}</span>
-              {fighter.nickname && <span className={s.nick}>“{fighter.nickname}”</span>}
+              {fighter.nickname && <span className={s.nick}>„{fighter.nickname}“</span>}
               <span className={s.last}>{fighter.lastName}</span>
             </h1>
             <FighterRecord record={fighter.record} size="lg" />
@@ -57,12 +57,12 @@ export default function FighterDetailPage() {
         </div>
       </section>
 
-      <Section aria-label="Statistics">
+      <Section aria-label="Statistiky">
         <div className={s.statsGrid}>
           <FighterStats fighter={fighter} />
           {fighter.bio && (
             <div className={s.bio}>
-              <h2 className="label">Biography</h2>
+              <h2 className="label">Životopis</h2>
               <p>{fighter.bio}</p>
             </div>
           )}
@@ -71,7 +71,7 @@ export default function FighterDetailPage() {
 
       {upcoming.length > 0 && (
         <Section tone="surface" aria-labelledby="next-fight">
-          <SectionHeader eyebrow="Booked" title="Next fight" id="next-fight" action={{ label: eventTitle(upcoming[0].event), to: `/events/${upcoming[0].event.id}` }} />
+          <SectionHeader eyebrow="Nasmlouváno" title="Příští zápas" id="next-fight" action={{ label: eventTitle(upcoming[0].event), to: `/events/${upcoming[0].event.id}` }} />
           <div className={s.upcoming}>
             {upcoming.map((f) => <FightCard key={f.id} fight={f} />)}
           </div>
@@ -79,17 +79,17 @@ export default function FighterDetailPage() {
       )}
 
       <Section aria-labelledby="history">
-        <SectionHeader eyebrow="CMRP Combat" title="Fight history" id="history" />
+        <SectionHeader eyebrow="CMRP Combat" title="Historie zápasů" id="history" />
         {history.length ? (
           <table className={s.table}>
-            <caption className="sr-only">Fight history for {fullName(fighter)}, most recent first</caption>
+            <caption className="sr-only">Historie zápasů – {fullName(fighter)}, od nejnovějšího</caption>
             <thead>
               <tr>
-                <th scope="col">Result</th>
-                <th scope="col">Opponent</th>
-                <th scope="col">Method</th>
-                <th scope="col">Event</th>
-                <th scope="col">Date</th>
+                <th scope="col">Výsledek</th>
+                <th scope="col">Soupeř</th>
+                <th scope="col">Způsob</th>
+                <th scope="col">Akce</th>
+                <th scope="col">Datum</th>
               </tr>
             </thead>
             <tbody>
@@ -97,7 +97,7 @@ export default function FighterDetailPage() {
                 const r = fight.result!
                 return (
                   <tr key={fight.id}>
-                    <td data-label="Result">
+                    <td data-label="Výsledek">
                       {outcome && (
                         <span className={`${s.outcome} ${s[outcome]}`}>
                           <span aria-hidden>{outcomeLetter[outcome]}</span>
@@ -105,27 +105,27 @@ export default function FighterDetailPage() {
                         </span>
                       )}
                     </td>
-                    <td data-label="Opponent">
+                    <td data-label="Soupeř">
                       <Link to={`/fighters/${opponent.id}`} className={s.opponent}>{fullName(opponent)}</Link>
                     </td>
-                    <td data-label="Method">
+                    <td data-label="Způsob">
                       <span className={s.method}>{methodLabels[r.method]}</span>
                       <span className={s.muted}>
-                        {r.detail && `${r.detail} · `}R{r.round} {r.time}
+                        {r.detail && `${r.detail} · `}{r.round}. kolo {r.time}
                       </span>
                     </td>
-                    <td data-label="Event">
+                    <td data-label="Akce">
                       <Link to={`/events/${fight.event.id}`}>{eventTitle(fight.event)}</Link>
-                      {fight.titleFight && <span className={s.titleTag}>Title fight</span>}
+                      {fight.titleFight && <span className={s.titleTag}>Titulový zápas</span>}
                     </td>
-                    <td data-label="Date" className="tabular">{formatDateShort(fight.event.date)}</td>
+                    <td data-label="Datum" className="tabular">{formatDateShort(fight.event.date)}</td>
                   </tr>
                 )
               })}
             </tbody>
           </table>
         ) : (
-          <p className={s.empty}>No fights in CMRP Combat yet.</p>
+          <p className={s.empty}>Zatím žádné zápasy v CMRP Combat.</p>
         )}
       </Section>
     </>

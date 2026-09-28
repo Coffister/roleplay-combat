@@ -20,11 +20,11 @@ export default function ArticlePage() {
       <article>
         <header className={s.articleHeader}>
           <Container className={s.articleHead}>
-            <Link to="/news" className={s.back}><ArrowLeft size={16} aria-hidden /> All news</Link>
+            <Link to="/news" className={s.back}><ArrowLeft size={16} aria-hidden /> Všechny novinky</Link>
             <p className={s.articleMeta}>
               <span className={s.category}>{categoryLabels[article.category]}</span>
               <time dateTime={article.date}>{formatDateLong(article.date)}</time>
-              {article.author && <span>By {article.author}</span>}
+              {article.author && <span>Autor: {article.author}</span>}
             </p>
             <h1 className={s.articleTitle}>{article.title}</h1>
             <p className={s.standfirst}>{article.excerpt}</p>
@@ -40,7 +40,7 @@ export default function ArticlePage() {
 
       {more.length > 0 && (
         <Section tone="surface" aria-labelledby="more-news">
-          <SectionHeader eyebrow="Keep reading" title="More news" id="more-news" action={{ label: 'All news', to: '/news' }} />
+          <SectionHeader eyebrow="Čti dál" title="Další novinky" id="more-news" action={{ label: 'Všechny novinky', to: '/news' }} />
           <ul className={s.grid2}>
             {more.map((a) => <li key={a.slug}><NewsCard article={a} /></li>)}
           </ul>

@@ -8,8 +8,8 @@ export function RootLayout() {
   const loading = useNavigation().state === 'loading'
   return (
     <MotionConfig reducedMotion="user">
-      {loading && <div className="route-progress" role="progressbar" aria-label="Loading page" />}
-      <a href="#main" className="skip-link">Skip to content</a>
+      {loading && <div className="route-progress" role="progressbar" aria-label="Načítání stránky" />}
+      <a href="#main" className="skip-link">Přeskočit na obsah</a>
       <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100dvh' }}>
         <Header />
         <motion.main
@@ -32,5 +32,5 @@ export function RootLayout() {
 
 /** Shown while the first route chunk loads. */
 export function PageLoading() {
-  return <div className="route-progress" role="progressbar" aria-label="Loading" />
+  return <div className="route-progress" role="progressbar" aria-label="Načítání" />
 }
