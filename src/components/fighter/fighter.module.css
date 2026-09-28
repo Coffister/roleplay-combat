@@ -1,0 +1,291 @@
+/* Avatar */
+.avatar {
+  display: inline-grid;
+  place-items: center;
+  flex: none;
+  overflow: hidden;
+  background: var(--color-surface-elevated);
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%);
+}
+
+.avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 15%;
+  transform: scale(1.6) translateY(12%);
+}
+
+.avatar-sm {
+  width: 2.25rem;
+  height: 2.25rem;
+}
+
+.avatar-md {
+  width: 3rem;
+  height: 3rem;
+}
+
+.avatar-lg {
+  width: 4.5rem;
+  height: 4.5rem;
+}
+
+.initials {
+  font-family: var(--font-display);
+  font-weight: 800;
+  color: var(--color-text-muted);
+}
+
+/* Portrait */
+.portrait {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+}
+
+.portrait img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: bottom center;
+}
+
+.mirror img {
+  transform: scaleX(-1);
+}
+
+.portraitFallback {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 4rem;
+  color: var(--color-border-strong);
+}
+
+/* Record */
+.record {
+  font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  line-height: 1;
+}
+
+.record-sm {
+  font-size: var(--text-lg);
+  color: var(--color-text-muted);
+}
+
+.record-md {
+  font-size: 1.5rem;
+}
+
+.record-lg {
+  font-size: var(--display-md);
+}
+
+/* Name */
+.name {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 900;
+  text-transform: uppercase;
+  line-height: 0.9;
+}
+
+.first {
+  font-weight: 600;
+}
+
+.nick {
+  color: var(--color-primary);
+  font-weight: 800;
+}
+
+.last {
+  font-weight: 900;
+}
+
+/* FighterCard */
+.card {
+  position: relative;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  transition: border-color var(--dur) var(--ease-out);
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto;
+  height: 3px;
+  background: var(--color-primary);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--dur) var(--ease-out);
+  z-index: 1;
+}
+
+.card:hover,
+.card:focus-within {
+  border-color: var(--color-border-strong);
+}
+
+.card:hover::before,
+.card:focus-within::before {
+  transform: scaleX(1);
+}
+
+.cardPortrait {
+  background: radial-gradient(ellipse 80% 70% at 50% 100%, var(--color-surface-elevated), transparent);
+}
+
+.cardPortrait img {
+  transition: transform var(--dur-slow) var(--ease-out);
+}
+
+.card:hover .cardPortrait img {
+  transform: scale(1.04);
+}
+
+.cardBody {
+  display: grid;
+  gap: var(--space-2);
+  padding: var(--space-4);
+  border-top: 1px solid var(--color-border);
+}
+
+.cardMeta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  min-height: 1.5rem;
+}
+
+.cardName {
+  font-size: var(--display-sm);
+  line-height: 0.95;
+}
+
+.cardNick {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  font-style: italic;
+}
+
+.stretched::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+}
+
+.stretched:focus-visible {
+  outline: none;
+}
+
+.stretched:focus-visible::after {
+  outline: 2px solid var(--color-text);
+  outline-offset: 2px;
+}
+
+/* FighterStats */
+.stats {
+  display: grid;
+  gap: var(--space-7);
+}
+
+.wld {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-block: 1px solid var(--color-border);
+}
+
+.wld > div {
+  padding: var(--space-4) var(--space-4) var(--space-4) 0;
+}
+
+.wld > div + div {
+  padding-left: var(--space-4);
+  border-left: 1px solid var(--color-border);
+}
+
+.wld dd {
+  margin-top: var(--space-2);
+  font-size: var(--display-lg);
+}
+
+.wld > div:first-child dd {
+  color: var(--color-primary);
+}
+
+.statsHeading {
+  margin-bottom: var(--space-4);
+}
+
+.methods {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.method {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: var(--space-2);
+  align-items: baseline;
+}
+
+.method dt {
+  font-weight: 600;
+}
+
+.method dd {
+  display: flex;
+  gap: var(--space-3);
+  align-items: baseline;
+}
+
+.methodValue {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+.methodPct {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  min-width: 3ch;
+  text-align: right;
+}
+
+.bar {
+  grid-column: 1 / -1;
+  height: 4px;
+  background: linear-gradient(to right, var(--color-text) var(--pct), var(--color-border) var(--pct));
+}
+
+.details {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-5) var(--space-4);
+}
+
+.details dd {
+  margin-top: var(--space-1);
+  font-weight: 600;
+}
+
+@media (min-width: 40rem) {
+  .details {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}

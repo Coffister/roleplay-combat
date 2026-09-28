@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900">
+<!-- PLACEHOLDER image. Replace with a 16:9 photo or graphic. -->
+<rect width="1600" height="900" fill="#111113"/>
+<path d="M980 0H1600V900H680Z" fill="#e2352c" opacity=".9"/>
+<path d="M1040 0H1090L790 900H740Z" fill="#111113"/>
+<path d="M300 150H700L950 400V700L700 950H300" fill="none" stroke="#f1ede6" stroke-opacity=".08" stroke-width="3"/>
+<text x="90" y="780" font-family="Arial Narrow, Arial, sans-serif" font-weight="900" font-size="420" fill="#f1ede6" fill-opacity=".92" letter-spacing="-10">FIGHT</text>
+<text x="100" y="140" font-family="Arial, sans-serif" font-weight="700" font-size="38" letter-spacing="10" fill="#f1ede6" fill-opacity=".7">CMRP COMBAT</text>
+</svg>

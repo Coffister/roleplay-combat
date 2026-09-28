@@ -1,0 +1,68 @@
+import type { NewsArticle } from '../types'
+
+export const news: NewsArticle[] = [
+  {
+    slug: 'fight-night-01-full-card',
+    title: 'Fight Night 01: full card announced',
+    category: 'fight-night',
+    date: '2026-09-20',
+    image: '/assets/news/fight-night-01-full-card.svg',
+    imageAlt: 'Fight Night 01 announcement graphic',
+    excerpt: 'Vega vs. Okafor for the lightweight title headlines seven fights at Maze Bank Arena on 17 October.',
+    author: 'CMRP Combat',
+    body: [
+      { type: 'p', text: 'The full card for CMRP Fight Night 01 is locked in. Seven fights, one title on the line, and a welterweight co-main that decides who fights Tomás Rivera next.' },
+      { type: 'h2', text: 'The main event' },
+      { type: 'p', text: 'Marcus "The Wolf" Vega makes the first defence of the lightweight title he won from Luka Petrović in August. Across the cage is Dante "Bull" Okafor, who has won five straight and is the last man to take Vega the distance.' },
+      { type: 'quote', text: 'He talks about pressure. I have been under pressure since Cypress Flats. Bring it.', cite: 'Marcus Vega' },
+      { type: 'h2', text: 'The co-main' },
+      { type: 'p', text: 'Noah van Dijk and Rashid Karimov meet in a striker-versus-wrestler matchup that has been building since both men won on the same night at Fight Night 00. The winner is next in line for the welterweight title.' },
+      { type: 'p', text: 'Also on the card: the Arai–Brooks rematch after their majority draw, Wallace vs. Rāwiri at heavyweight, and Yıldız vs. Cruz at middleweight.' },
+    ],
+  },
+  {
+    slug: 'new-fighters-join-rankings',
+    title: 'Rankings update: Yıldız enters the top four',
+    category: 'roster',
+    date: '2026-08-25',
+    image: '/assets/news/new-fighters-join-rankings.svg',
+    imageAlt: 'Rankings update graphic',
+    excerpt: 'Van Dijk climbs to #1 at welterweight, and Emre Yıldız debuts at #2 at middleweight after a first-round knockout.',
+    author: 'CMRP Combat',
+    body: [
+      { type: 'p', text: 'The first rankings update after Fight Night 00 brings movement in every division.' },
+      { type: 'p', text: 'Noah van Dijk jumps two spots to become the top welterweight contender. Rashid Karimov also climbs two. At middleweight, Emre Yıldız enters the rankings at #2 after needing 1:58 to finish Sam Kowalski.' },
+      { type: 'p', text: 'Rankings are voted by the CMRP Combat matchmaking panel after every event.' },
+    ],
+  },
+  {
+    slug: 'fight-night-00-results',
+    title: 'Fight Night 00: Vega takes the belt',
+    category: 'results',
+    date: '2026-08-23',
+    image: '/assets/news/fight-night-00-results.svg',
+    imageAlt: 'Fight Night 00 results graphic',
+    excerpt: 'Marcus Vega stops Luka Petrović in the fourth round to become lightweight champion. Hale retains at middleweight.',
+    author: 'CMRP Combat',
+    body: [
+      { type: 'p', text: 'Marcus Vega is the new CMRP Combat lightweight champion. After three close rounds, Vega hurt Petrović with a right hand midway through the fourth and finished him against the fence at 3:21.' },
+      { type: 'p', text: 'In the co-main, Viktor Hale kept his middleweight title with a unanimous decision over Mateo Cruz after twenty-five minutes at a pace nobody else in the division could keep up with.' },
+      { type: 'quote', text: 'Five rounds. He never stopped coming. Respect to Mateo.', cite: 'Viktor Hale' },
+    ],
+  },
+  {
+    slug: 'cmrp-combat-is-here',
+    title: 'CMRP Combat is here',
+    category: 'announcement',
+    date: '2026-06-01',
+    image: '/assets/news/cmrp-combat-is-here.svg',
+    imageAlt: 'CMRP Combat launch graphic',
+    excerpt: 'The underground fights of Los Santos now have a home, a rulebook, rankings and titles.',
+    author: 'CMRP Combat',
+    body: [
+      { type: 'p', text: 'What started in a Cypress Flats warehouse is now an organised promotion. CMRP Combat brings sanctioned fights, divisions, rankings and championship titles to the CMRP roleplay server.' },
+      { type: 'p', text: 'Every fight takes place in the city, in character, with referees, judges and a broadcast on Weazel News Sports.' },
+      { type: 'p', text: 'Want in? Registration is open for all four divisions.' },
+    ],
+  },
+]

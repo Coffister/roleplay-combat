@@ -1,0 +1,47 @@
+import type { FightEvent } from '../types'
+
+export const events: FightEvent[] = [
+  {
+    id: 'origins',
+    name: 'CMRP Combat: Origins',
+    date: '2025-12-13T20:00:00+01:00',
+    location: 'Los Santos',
+    venue: 'Cypress Flats Warehouse',
+    status: 'completed',
+    broadcast: 'Weazel News Sports',
+    description: 'Where it started. Four fights in a warehouse in Cypress Flats and a crowd that would not leave.',
+  },
+  {
+    id: 'fight-night-00',
+    name: 'CMRP Fight Night',
+    number: '00',
+    date: '2026-08-22T20:00:00+02:00',
+    location: 'Los Santos',
+    venue: 'Vespucci Beach Arena',
+    status: 'completed',
+    broadcast: 'Weazel News Sports',
+    description: 'The first numbered card, with two title fights on the line.',
+  },
+  {
+    id: 'fight-night-01',
+    name: 'CMRP Fight Night',
+    number: '01',
+    date: '2026-10-17T20:00:00+02:00',
+    location: 'Los Santos',
+    venue: 'Maze Bank Arena',
+    status: 'upcoming',
+    broadcast: 'Live in-city on Weazel News Sports. Doors open 19:00, prelims 20:00, main card 21:30 (server time).',
+    description: 'Vega defends the lightweight title against Dante Okafor, and the welterweight #1 contender spot is decided in the co-main.',
+  },
+  {
+    id: 'fight-night-02',
+    name: 'CMRP Fight Night',
+    number: '02',
+    date: '2026-12-12T20:00:00+01:00',
+    location: 'Los Santos',
+    venue: 'Maze Bank Arena',
+    status: 'upcoming',
+    broadcast: 'Weazel News Sports',
+    description: 'Two title fights to close out the year. Full card to be announced.',
+  },
+]

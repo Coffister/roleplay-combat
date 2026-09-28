@@ -1,0 +1,121 @@
+.button {
+  --btn-bg: var(--color-primary);
+  --btn-fg: var(--color-primary-contrast);
+  --btn-border: var(--color-primary);
+  display: inline-flex;
+  position: relative;
+  clip-path: var(--clip-chamfer);
+  padding: 1px;
+  background: var(--btn-border);
+  transition: background var(--dur) var(--ease-out), transform var(--dur-fast) var(--ease-out);
+  --chamfer: 10px;
+}
+
+.button:focus-visible {
+  outline: none;
+}
+
+/* clip-path hides outlines, so the focus ring is drawn inside */
+.button:focus-visible .inner {
+  box-shadow: inset 0 0 0 2px var(--btn-fg);
+}
+
+.button:active {
+  transform: translateY(1px);
+}
+
+.inner {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  width: 100%;
+  clip-path: var(--clip-chamfer);
+  background: var(--btn-bg);
+  color: var(--btn-fg);
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: var(--text-sm);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transition: background var(--dur) var(--ease-out), color var(--dur) var(--ease-out);
+}
+
+.inner svg {
+  width: 1.1em;
+  height: 1.1em;
+  transition: transform var(--dur) var(--ease-out);
+}
+
+.button:hover .inner svg:last-child {
+  transform: translateX(3px);
+}
+
+.md .inner {
+  min-height: 2.75rem;
+  padding: 0 var(--space-5);
+}
+
+.lg .inner {
+  min-height: 3.5rem;
+  padding: 0 var(--space-6);
+}
+
+.primary:hover {
+  --btn-bg: color-mix(in oklab, var(--color-primary) 86%, white);
+  --btn-border: color-mix(in oklab, var(--color-primary) 86%, white);
+}
+
+.outline {
+  --btn-bg: var(--color-bg);
+  --btn-fg: var(--color-text);
+  --btn-border: var(--color-border-strong);
+}
+
+.outline:hover {
+  --btn-border: var(--color-text);
+  --btn-bg: var(--color-surface);
+}
+
+.ghost {
+  --btn-bg: transparent;
+  --btn-fg: var(--color-text);
+  --btn-border: transparent;
+}
+
+.ghost:hover {
+  --btn-fg: var(--color-primary);
+}
+
+/* Moving border: a highlight that travels around the edge. Inspired by Aceternity "Moving Border". */
+@property --angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.moving {
+  padding: 2px;
+  background: conic-gradient(
+    from var(--angle),
+    var(--btn-border) 0deg,
+    var(--btn-border) 250deg,
+    var(--color-text) 300deg,
+    var(--btn-border) 340deg
+  );
+  animation: spin 4s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    --angle: 360deg;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .moving {
+    animation: none;
+    background: var(--btn-border);
+  }
+}
